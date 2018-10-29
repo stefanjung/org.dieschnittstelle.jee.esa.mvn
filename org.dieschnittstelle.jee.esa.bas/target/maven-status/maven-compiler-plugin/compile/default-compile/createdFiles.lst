@@ -13,6 +13,7 @@ org/dieschnittstelle/jee/esa/basics/annotations/StockItem.class
 org/dieschnittstelle/jee/esa/basics/ShowClasspathScan.class
 org/dieschnittstelle/jee/esa/basics/annotations/AnnotatedStockItemBuilder.class
 org/dieschnittstelle/jee/esa/basics/annotations/Units.class
+org/dieschnittstelle/jee/esa/basics/annotations/DisplayAs.class
 org/dieschnittstelle/jee/esa/basics/reflection/stockitemtypes/Chocolate.class
 org/dieschnittstelle/jee/esa/basics/Consumer.class
 org/dieschnittstelle/jee/esa/basics/annotations/Initialise.class

@@ -3,15 +3,12 @@ package org.dieschnittstelle.jee.esa.basics;
 
 import org.dieschnittstelle.jee.esa.basics.annotations.AnnotatedStockItemBuilder;
 import org.dieschnittstelle.jee.esa.basics.annotations.StockItemProxyImpl;
+import org.dieschnittstelle.jee.esa.basics.annotations.DisplayAs;
 
-import javax.xml.stream.events.Attribute;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import static org.dieschnittstelle.jee.esa.utils.Utils.*;
@@ -53,8 +50,13 @@ public class ShowAnnotations {
             for (Method getter : getterMethod) {
                 i++;
 
-                String[] split = getter.getName().split("get");
-                output.append(split[1].toLowerCase()).append(":").append(getter.invoke(consumable));
+                if (getter.isAnnotationPresent(DisplayAs.class)) {
+                    output.append(getter.getAnnotation(DisplayAs.class).value()).append(":").append(getter.invoke(consumable));
+                } else {
+                    String[] split = getter.getName().split("get");
+                    output.append(split[1].toLowerCase()).append(":").append(getter.invoke(consumable));
+                }
+
                 if (i != getterMethod.size()) {
                     output.append(", ");
                 }

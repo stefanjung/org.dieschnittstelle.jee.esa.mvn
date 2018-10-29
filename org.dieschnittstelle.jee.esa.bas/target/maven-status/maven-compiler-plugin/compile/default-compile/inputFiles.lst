@@ -6,6 +6,7 @@
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.bas/src/main/java/org/dieschnittstelle/jee/esa/basics/annotations/stockitemtypes/Milch.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.bas/src/main/java/org/dieschnittstelle/jee/esa/basics/reflection/stockitemtypes/Chocolate.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.bas/src/main/java/org/dieschnittstelle/jee/esa/basics/annotations/AnnotatedStockItemBuilder.java
+/Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.bas/src/main/java/org/dieschnittstelle/jee/esa/basics/annotations/DisplayAs.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.bas/src/main/java/org/dieschnittstelle/jee/esa/basics/IStockItem.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.bas/src/main/java/org/dieschnittstelle/jee/esa/basics/reflection/stockitemtypes/Milk.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.bas/src/main/java/org/dieschnittstelle/jee/esa/basics/ShowReflection.java

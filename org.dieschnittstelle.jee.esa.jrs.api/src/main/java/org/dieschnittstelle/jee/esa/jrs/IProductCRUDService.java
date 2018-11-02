@@ -1,11 +1,11 @@
 package org.dieschnittstelle.jee.esa.jrs;
 
-import org.dieschnittstelle.jee.esa.entities.erp.IndividualisedProductItem;
+import org.dieschnittstelle.jee.esa.entities.erp.AbstractProduct;
 
 import java.util.List;
 
 /*
- * UE JRS2: 
+ * UE JRS2:
  * deklarieren Sie hier Methoden fuer:
  * - die Erstellung eines Produkts
  * - das Auslesen aller Produkte
@@ -20,15 +20,14 @@ import java.util.List;
  */
 public interface IProductCRUDService {
 
-	public IndividualisedProductItem createProduct(IndividualisedProductItem prod);
+    public AbstractProduct createProduct(AbstractProduct prod);
 
-	public List<IndividualisedProductItem> readAllProducts();
+    public List readAllProducts();
 
-	public IndividualisedProductItem updateProduct(long id,
-												   IndividualisedProductItem update);
+    public AbstractProduct updateProduct(long id, AbstractProduct update);
 
-	boolean deleteProduct(long id);
+    boolean deleteProduct(long id);
 
-	public IndividualisedProductItem readProduct(long id);
-			
+    public AbstractProduct readProduct(long id);
+
 }

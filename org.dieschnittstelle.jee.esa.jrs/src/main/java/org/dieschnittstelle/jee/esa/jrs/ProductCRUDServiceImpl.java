@@ -58,11 +58,12 @@ public class ProductCRUDServiceImpl implements IProductCRUDService {
     @Override
     public AbstractProduct readProduct(long id) {
         AbstractProduct ip = this.productCRUD.readObject(id);
-        if (ip != null) {
-            return ip;
-        } else {
-            throw new NotFoundException("the product with id " + id + " does not exist!");
-        }
+        return ip;
+//        if (ip != null) {
+//            return ip;
+//        } else {
+//            throw new NotFoundException("the product with id " + id + " does not exist!");
+//        }
     }
 
 }

@@ -5,8 +5,11 @@ import java.io.Serializable;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.logging.log4j.Logger;
 
+import javax.jws.WebService;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlType;
 
+@XmlType(namespace = "http://dieschnittstelle.org/jee/esa/entities/erp/ws")
 public class IndividualisedProductItem extends AbstractProduct implements Serializable {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(IndividualisedProductItem.class);

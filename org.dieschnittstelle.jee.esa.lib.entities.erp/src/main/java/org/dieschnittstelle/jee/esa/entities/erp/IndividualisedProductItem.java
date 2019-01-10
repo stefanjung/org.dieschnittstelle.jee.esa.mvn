@@ -9,6 +9,7 @@ import javax.jws.WebService;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlType;
 
+@Entity
 @XmlType(namespace = "http://dieschnittstelle.org/jee/esa/entities/erp/ws")
 public class IndividualisedProductItem extends AbstractProduct implements Serializable {
 

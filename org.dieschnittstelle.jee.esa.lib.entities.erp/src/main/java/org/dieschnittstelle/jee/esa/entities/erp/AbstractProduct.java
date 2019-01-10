@@ -7,6 +7,9 @@ import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.jee.esa.entities.GenericCRUDEntity;
 
 import javax.jws.WebService;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlType;
 
 /*
@@ -14,6 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlType(namespace = "http://dieschnittstelle.org/jee/esa/entities/erp/ws")
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "@class")
+@Entity
 public abstract class AbstractProduct implements Serializable, GenericCRUDEntity {
 
     protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(AbstractProduct.class);
@@ -23,6 +27,8 @@ public abstract class AbstractProduct implements Serializable, GenericCRUDEntity
      */
     private static final long serialVersionUID = 6940403029597060153L;
 
+    @Id
+    @GeneratedValue
     private long id;
 
     private String name;

@@ -4,11 +4,16 @@ import java.util.List;
 
 import org.dieschnittstelle.jee.esa.entities.erp.IndividualisedProductItem;
 
+import javax.ejb.Remote;
+import javax.jws.WebService;
+
 /**
  * TODO JPA4:
  * this interface shall be implemented using the two CRUD EJBs for PointOfSale and StockItem via
  * local interface below, comments will give some hints at how the implementation could be done
  */
+@Remote
+@WebService
 public interface StockSystemRemote {
 
 	/**

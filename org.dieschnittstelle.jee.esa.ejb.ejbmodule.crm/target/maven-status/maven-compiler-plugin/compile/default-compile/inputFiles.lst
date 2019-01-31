@@ -1,6 +1,7 @@
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/ejbmodule/crm/CampaignTrackingRemote.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/ejbmodule/crm/ShoppingCartRESTService.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/ejbmodule/crm/crud/TouchpointCRUDRemote.java
+/Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/ejbmodule/crm/CustomerTrackingLocal.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/ejbmodule/crm/ShoppingCartRESTServiceImpl.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/ejbmodule/crm/TouchpointAccessStatelessAsync.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/ejbmodule/crm/CampaignTrackingSingleton.java
@@ -12,10 +13,12 @@
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/ejbmodule/crm/ShoppingCartStateful.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/interceptors/LoggingInterceptor.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/ejbmodule/crm/shopping/ShoppingSessionFacadeRemote.java
+/Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/ejbmodule/crm/CampaignTrackingLocal.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/ejbmodule/crm/RESTWebAPI.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/ejbmodule/crm/crud/CustomerTransactionCRUDStateless.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/ejbmodule/crm/crud/TouchpointCRUDLocal.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/ejbmodule/crm/crud/CustomerTransactionCRUDLocal.java
+/Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/ejbmodule/crm/shopping/ShoppingSessionFacadeStateful.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/ejbmodule/crm/ShoppingCartLocal.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/ejbmodule/crm/CustomerTrackingRemote.java
 /Users/Jung/projects/org.dieschnittstelle.jee.esa.mvn/org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm/src/main/java/org/dieschnittstelle/jee/esa/ejb/ejbmodule/crm/crud/CustomerCRUDLocal.java

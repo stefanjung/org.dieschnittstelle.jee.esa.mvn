@@ -124,6 +124,7 @@ public class ShoppingSession implements ShoppingBusinessDelegate {
 			if (item.isCampaign()) {
 				this.campaignTracking.purchaseCampaignAtTouchpoint(item.getErpProductId(), this.touchpoint,
 						item.getUnits());
+
 				// TODO: wenn Sie eine Kampagne haben, muessen Sie hier
 				// 1) ueber die ProductBundle Objekte auf dem Campaign Objekt iterieren, und
 				// 2) fuer jedes ProductBundle das betreffende Produkt in der auf dem Bundle angegebenen Anzahl, multipliziert mit dem Wert von

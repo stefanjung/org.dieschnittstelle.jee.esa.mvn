@@ -1,8 +1,10 @@
 package org.dieschnittstelle.jee.esa.wsv.client;
 
 import java.io.IOException;
+import java.lang.reflect.Proxy;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.jee.esa.entities.crm.Address;
 import org.dieschnittstelle.jee.esa.entities.crm.StationaryTouchpoint;
@@ -22,16 +24,21 @@ public class AccessRESTServiceWithInterpreter {
      */
     public static void main(String[] args) {
 
-		/*
-		 * TODO: create an instance of the invocation handler passing the service
-		 * interface and the base url
-		 */
+        /*
+         * TODO: create an instance of the invocation handler passing the service
+         * interface and the base url
+         */
         JAXRSClientInterpreter invocationHandler = null;
 
-		/*
-		 * TODO: create a client for the web service using Proxy.newProxyInstance()
-		 */
-        ITouchpointCRUDService serviceProxy = null;
+        /*
+         * TODO: create a client for the web service using Proxy.newProxyInstance()
+         */
+        ITouchpointCRUDService serviceProxy = (ITouchpointCRUDService)
+                Proxy.newProxyInstance(AccessRESTServiceWithInterpreter.class.getClassLoader(),
+                        new Class[]{ITouchpointCRUDService.class},
+                        new JAXRSClientInterpreter(ITouchpointCRUDService.class,
+                                "http://localhost:8888/org.dieschnittstelle.jee.esa.jrs/api"));
+
 
         show("serviceProxy: " + serviceProxy);
 
@@ -57,7 +64,7 @@ public class AccessRESTServiceWithInterpreter {
                 "Berlin");
         StationaryTouchpoint tp = new StationaryTouchpoint(-1,
                 "BHT Verkaufsstand", addr);
-        tp = (StationaryTouchpoint)serviceProxy.createTouchpoint(tp);
+        tp = (StationaryTouchpoint) serviceProxy.createTouchpoint(tp);
         show("created: " + tp);
 
         // TODO: comment-in the call to read() once this is handled

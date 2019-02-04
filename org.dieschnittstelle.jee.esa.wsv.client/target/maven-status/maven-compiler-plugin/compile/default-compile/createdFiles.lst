@@ -1,0 +1,6 @@
+org/dieschnittstelle/jee/esa/wsv/interpreter/JAXRSClientInterpreter.class
+org/dieschnittstelle/jee/esa/wsv/client/service/ITouchpointCRUDService.class
+org/dieschnittstelle/jee/esa/wsv/interpreter/json/JSONObjectMapper.class
+org/dieschnittstelle/jee/esa/wsv/interpreter/json/ObjectMappingException.class
+org/dieschnittstelle/jee/esa/wsv/interpreter/json/JSONObjectSerialiser.class
+org/dieschnittstelle/jee/esa/wsv/client/AccessRESTServiceWithInterpreter.class

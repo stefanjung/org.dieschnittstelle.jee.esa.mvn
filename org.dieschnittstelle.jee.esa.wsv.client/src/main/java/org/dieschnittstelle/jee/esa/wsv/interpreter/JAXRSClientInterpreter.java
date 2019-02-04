@@ -2,17 +2,13 @@ package org.dieschnittstelle.jee.esa.wsv.interpreter;
 
 
 import java.io.ByteArrayOutputStream;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.*;
 
+import org.apache.http.client.methods.*;
 import org.apache.logging.log4j.Logger;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 
@@ -20,12 +16,10 @@ import org.apache.http.HttpEntityEnclosingRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.util.EntityUtils;
 
+import org.apache.logging.log4j.core.impl.MementoMessage;
 import org.dieschnittstelle.jee.esa.utils.Http;
 import org.dieschnittstelle.jee.esa.wsv.interpreter.json.JSONObjectSerialiser;
 
@@ -86,6 +80,16 @@ public class JAXRSClientInterpreter implements InvocationHandler {
         // TODO: check whether we have method arguments - only consider pathparam annotations (if any) on the first argument here - if no args are passed, the value of args is null! if no pathparam annotation is present assume that the argument value is passed via the body of the http request
         if (args != null && args.length > 0) {
             if (meth.getParameterAnnotations()[0].length > 0 && meth.getParameterAnnotations()[0][0].annotationType() == PathParam.class) {
+                String parameterAnnotation = meth.getParameterAnnotations()[0][0].toString();
+                parameterAnnotation = parameterAnnotation.split("=")[1];
+                parameterAnnotation = parameterAnnotation.substring(0,parameterAnnotation.length() - 1);
+                parameterAnnotation = "{" + parameterAnnotation + "}";
+                String paramValue = args[0].toString();
+                url = url.replace(parameterAnnotation,paramValue);
+
+                if(args.length > 1){
+                    bodyValue = args[1];
+                }
                 // TODO: handle PathParam on the first argument - do not forget that in this case we might have a second argument providing a bodyValue
                 // TODO: if we have a path param, we need to replace the corresponding pattern in the url with the parameter value
             } else {
@@ -102,6 +106,10 @@ public class JAXRSClientInterpreter implements InvocationHandler {
             request = new HttpPost(url);
         } else if (meth.isAnnotationPresent(GET.class)) {
             request = new HttpGet(url);
+        } else if(meth.isAnnotationPresent(PUT.class)){
+            request = new HttpPut(url);
+        } else if(meth.isAnnotationPresent(DELETE.class)){
+            request = new HttpDelete(url);
         } else {
             throw new UnsupportedOperationException("cannot handle method call of: " + meth + ". Only GET and POST are supported");
         }

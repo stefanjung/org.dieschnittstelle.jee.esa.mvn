@@ -1,5 +1,6 @@
 package org.dieschnittstelle.jee.esa.wsv.client.service;
 
+import org.dieschnittstelle.jee.esa.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.jee.esa.entities.crm.StationaryTouchpoint;
 
 import javax.ws.rs.*;
@@ -18,7 +19,7 @@ public interface ITouchpointCRUDService {
 	public StationaryTouchpoint readTouchpoint(@PathParam("touchpointId") long id);
 
 	@POST
-	public StationaryTouchpoint createTouchpoint(StationaryTouchpoint touchpoint); 
+	public StationaryTouchpoint createTouchpoint(StationaryTouchpoint touchpoint);
 	
 	@DELETE
 	@Path("/{touchpointId}")

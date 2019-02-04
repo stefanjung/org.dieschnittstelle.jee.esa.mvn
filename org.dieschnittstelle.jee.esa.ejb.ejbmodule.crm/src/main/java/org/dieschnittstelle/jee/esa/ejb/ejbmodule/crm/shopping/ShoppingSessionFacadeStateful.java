@@ -2,13 +2,19 @@ package org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm.shopping;
 
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm.*;
+import org.dieschnittstelle.jee.esa.ejb.ejbmodule.erp.StockSystemLocal;
+import org.dieschnittstelle.jee.esa.ejb.ejbmodule.erp.crud.ProductCRUDLocal;
+import org.dieschnittstelle.jee.esa.ejb.ejbmodule.erp.crud.ProductCRUDRemote;
 import org.dieschnittstelle.jee.esa.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.jee.esa.entities.crm.Customer;
 import org.dieschnittstelle.jee.esa.entities.crm.CustomerTransaction;
 import org.dieschnittstelle.jee.esa.entities.crm.ShoppingCartItem;
 import org.dieschnittstelle.jee.esa.entities.erp.AbstractProduct;
 import org.dieschnittstelle.jee.esa.entities.erp.Campaign;
+import org.dieschnittstelle.jee.esa.entities.erp.IndividualisedProductItem;
+import org.dieschnittstelle.jee.esa.entities.erp.ProductBundle;
 
+import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import java.util.List;
@@ -28,6 +34,13 @@ public class ShoppingSessionFacadeStateful implements ShoppingSessionFacadeRemot
 
     @EJB
     private CampaignTrackingLocal campaignTracking;
+
+    @EJB
+    private ProductCRUDLocal productCRUDLocal;
+
+    @EJB
+    private StockSystemLocal stockSystemLocal;
+
 
     /**
      * the customer
@@ -79,7 +92,7 @@ public class ShoppingSessionFacadeStateful implements ShoppingSessionFacadeRemot
     }
 
     @Override
-    public void purchase()  throws ShoppingException {
+    public void purchase() throws ShoppingException {
         logger.info("purchase()");
 
         if (this.customer == null || this.touchpoint == null) {
@@ -103,6 +116,12 @@ public class ShoppingSessionFacadeStateful implements ShoppingSessionFacadeRemot
         logger.info("purchase(): done.\n");
     }
 
+    @PreDestroy
+    @Override
+    public void finish() {
+
+    }
+
     /*
      * to be implemented as server-side method for PAT2
      */
@@ -110,25 +129,26 @@ public class ShoppingSessionFacadeStateful implements ShoppingSessionFacadeRemot
         logger.info("checkAndRemoveProductsFromStock");
 
         for (ShoppingCartItem item : this.shoppingCart.getItems()) {
-
-            // TODO: ermitteln Sie das AbstractProduct für das gegebene ShoppingCartItem. Nutzen Sie dafür dessen erpProductId und die ProductCRUD EJB
-
+            AbstractProduct abstractProduct = productCRUDLocal.readProduct(item.getErpProductId());
 
             if (item.isCampaign()) {
                 this.campaignTracking.purchaseCampaignAtTouchpoint(item.getErpProductId(), this.touchpoint,
                         item.getUnits());
-                // TODO: wenn Sie eine Kampagne haben, muessen Sie hier
                 // 1) ueber die ProductBundle Objekte auf dem Campaign Objekt iterieren, und
-                // 2) fuer jedes ProductBundle das betreffende Produkt in der auf dem Bundle angegebenen Anzahl, multipliziert mit dem Wert von
-                // item.getUnits() aus dem Warenkorb,
-                // - hinsichtlich Verfuegbarkeit ueberpruefen, und
-                // - falls verfuegbar, aus dem Warenlager entfernen - nutzen Sie dafür die StockSystem EJB
-                // (Anm.: item.getUnits() gibt Ihnen Auskunft darüber, wie oft ein Produkt, im vorliegenden Fall eine Kampagne, im
-                // Warenkorb liegt)
+                Campaign campaign = (Campaign) abstractProduct;
+                for (ProductBundle productBundle : campaign.getBundles()) {
+                    int count = productBundle.getUnits() * item.getUnits();
+                    int available = stockSystemLocal.getUnitsOnStock(productBundle.getProduct(), touchpoint.getErpPointOfSaleId());
+                    if (available >= count) {
+                        stockSystemLocal.removeFromStock(productBundle.getProduct(), touchpoint.getErpPointOfSaleId(), count);
+                    }
+                }
             } else {
-                // TODO: andernfalls (wenn keine Kampagne vorliegt) muessen Sie
-                // 1) das Produkt in der in item.getUnits() angegebenen Anzahl hinsichtlich Verfuegbarkeit ueberpruefen und
-                // 2) das Produkt, falls verfuegbar, in der entsprechenden Anzahl aus dem Warenlager entfernen
+                IndividualisedProductItem individualisedProductItem = (IndividualisedProductItem) abstractProduct;
+                int available = stockSystemLocal.getUnitsOnStock(individualisedProductItem, touchpoint.getErpPointOfSaleId());
+                if (available >= item.getUnits()) {
+                    stockSystemLocal.removeFromStock(individualisedProductItem, touchpoint.getErpPointOfSaleId(), item.getUnits());
+                }
             }
 
         }
